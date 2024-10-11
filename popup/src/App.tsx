@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./index.scss";
 import React from "react";
 import Home from "./views/home";
@@ -7,13 +8,10 @@ import Error from "./views/error";
 import useRouter from "./hooks/useRouter";
 import { GandalfProvider } from "./context/gandalf.context";
 import { Router, Routes, Route } from "react-router-dom";
-
-const App = () => {
+const App = memo(() => {
   const [location, navigator] = useRouter("/popup/dist");
   if (!location) return null;
-
-  return (
-    <Router basename="/popup/dist" location={location} navigator={navigator}>
+  return <Router basename="/popup/dist" location={location} navigator={navigator}>
       <GandalfProvider>
         <div className="App">
           <Routes>
@@ -24,8 +22,6 @@ const App = () => {
           </Routes>
         </div>
       </GandalfProvider>
-    </Router>
-  );
-};
-
+    </Router>;
+});
 export default App;

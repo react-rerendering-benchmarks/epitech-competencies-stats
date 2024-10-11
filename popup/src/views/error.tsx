@@ -1,10 +1,10 @@
+import { memo } from "react";
 import { Card, Text } from "@tremor/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../component/header";
 import GandalfContext from "../context/gandalf.context";
-
-const ErrorPage: React.FC = () => {
+const ErrorPage: React.FC = memo(() => {
   console.log("rendering error page");
   const data = React.useContext(GandalfContext);
   const navigate = useNavigate();
@@ -12,8 +12,7 @@ const ErrorPage: React.FC = () => {
     navigate("/");
     return null;
   }
-  return (
-    <>
+  return <>
       <Header title="No data" />
       <Card maxWidth="max-w-xl" shadow marginTop="mt-4">
         <Text>
@@ -21,8 +20,6 @@ const ErrorPage: React.FC = () => {
           récupérer, stocker et actualiser vos données.
         </Text>
       </Card>
-    </>
-  );
-};
-
+    </>;
+});
 export default ErrorPage;
